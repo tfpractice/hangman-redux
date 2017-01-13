@@ -489,8 +489,6 @@ const rm = [
 const normalize = s => s.trim().toLowerCase();
 const normalizePair = ([ k, v, ]) => [ normalize(k), v.map(normalize), ];
 
-// const
-
 export const ANIMAP = new Map(ANIMARR.map(normalizePair));
-export const ANIMALS = [ ...ANIMAP.keys(), ].map(s => s.trim().toLowerCase());
+export const ANIMALS = [ ...ANIMAP.keys(), ];
 export const NAMES = [ ANIMAP.values(), ];
