@@ -1,6 +1,5 @@
 import axios from 'axios';
-
-// import { singular, } from 'pluralize';
+import { singular, } from 'pluralize';
 import { ANIMALS, ANIMAP, MASHAPE_KEY, RANDOM_WORD_URL, WORD_SEARCH_URL, WORDS_API_URL, }
  from '../utils';
 import { HEADERS as headers, } from '../utils';
@@ -14,19 +13,29 @@ export const resetWord = wrd =>
 export const animFQ = new Map();
 
 const defRet = ({ word: '', frequency: { zipf: 0, }, });
+const remove = [];
 
 export const getFrequency = wrd =>
 axios.get(`${WORDS_API_URL}/${wrd}/frequency`, { headers, })
   .then(getData)
-  .then(({ word, frequency: { zipf, }, } = defRet) => new Map().set(word, zipf))
-  .catch(e => console.error(wrd, e));
+  .then(({ word, frequency, } = defRet) =>
+  new Map().set(word, frequency.zipf + 0))
+  .catch((e) => {
+    console.error(e, remove.push(wrd));
+    console.log('remove', remove);
+    return remove;
+  });
 
 export const defFQ = [ '', 0, ];
 export const compareFQ = ([ k0, v0, ] = defFQ, [ k1, v1, ] = defFQ) => v0 - v1;
 export const animalFreq = () => {
   console.log('ANIMAP', ANIMAP);
+  const sing = [ ...ANIMAP.keys(), ].map(singular);
+
+  console.log('sing', sing);
   Promise.resolve(ANIMALS.map(getFrequency))
     .then(console.log)
+    .then(x => console.log('remove', remove))
     .catch(console.error);
 };
 
