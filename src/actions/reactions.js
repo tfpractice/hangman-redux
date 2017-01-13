@@ -8,6 +8,7 @@ const update = syns => prev => syns || [ 'eye roll', 'facepalm', 'happy', 'high 
 export const updateReactions = syns =>
 ({ type: UPDATE_REACTIONS, curry: update(syns), });
 const aMap = new Map(animals.entries());
-const narr = names.map(s=> );
 
-export const getReactions = () => console.log('getReactions', aMap, narr);
+// const narr = names.map(s=> );
+
+export const getReactions = () => console.log('getReactions', aMap);
