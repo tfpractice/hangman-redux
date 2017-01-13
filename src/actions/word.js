@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-import { ANIMALS, MASHAPE_KEY, RANDOM_WORD_URL, WORD_SEARCH_URL, WORDS_API_URL, }
+// import { singular, } from 'pluralize';
+import { ANIMALS, ANIMAP, MASHAPE_KEY, RANDOM_WORD_URL, WORD_SEARCH_URL, WORDS_API_URL, }
  from '../utils';
 import { HEADERS as headers, } from '../utils';
 import { GUESS_WORD, RESET_WORD, WORD_ACTIONS, } from '../constants';
@@ -22,9 +23,12 @@ axios.get(`${WORDS_API_URL}/${wrd}/frequency`, { headers, })
 
 export const defFQ = [ '', 0, ];
 export const compareFQ = ([ k0, v0, ] = defFQ, [ k1, v1, ] = defFQ) => v0 - v1;
-export const animalFreq = () => Promise.resolve(ANIMALS.map(getFrequency))
-  .then(console.log)
-  .catch(console.error);
+export const animalFreq = () => {
+  console.log('ANIMAP', ANIMAP);
+  Promise.resolve(ANIMALS.map(getFrequency))
+    .then(console.log)
+    .catch(console.error);
+};
 
 // export const sortFQ = fmap => [ ...fmap, ].sort(compareFQ);
 // export const orderFQ = sortFQ(animalFreq);
