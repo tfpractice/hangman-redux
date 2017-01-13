@@ -1,4 +1,4 @@
-export const animals = [
+export const ANIMALS = [
   'Albatross',
   'Alligators',
   'Apes',
@@ -243,7 +243,7 @@ export const animals = [
   'Zebras',
 ];
 
-export const names = [
+export const NAMES = [
   [ 'Rookery', ],
   [ 'Congregation', ],
   [ 'Shrewdness, Troop', ],
@@ -489,5 +489,3 @@ export const names = [
 ];
 
 export const splitNames = str => str.split(',');
-
-// console.log('names', names.map(splitNames));
