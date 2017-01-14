@@ -17,7 +17,7 @@ import Letter from './letter';
 import Word from './word';
 import Grid from './grid';
 import { animalActs, gifActs, reactionActs, statusActs, wordActs, } from '../actions';
-
+import App from './main';
 const mapStateToProps = ({ word, guesses, synonyms, animals, remaining, gifs, reactions, }) =>
 ({
 word, guesses, remaining, gifs, next: reactions[0], animals,
@@ -29,7 +29,11 @@ const NoMatch = ({ location, }) => (
     <p>Sorry but {location.pathname} didn’t match any pages</p>
   </div>
 );
-
+const About = () => (
+  <div>
+    <h2>About</h2>
+  </div>
+);
 const Topics = ({ pathname, pattern, }) => (
 
   // 5. Components rendered by a `Match` get some routing-specific
@@ -66,18 +70,12 @@ const Topic = ({ params, }) => (
     <h3>{params.topicId}</h3>
   </div>
 );
-const App = ({ word, guesses, resetAnimals, remaining, startGame, getRandomWord, animals, getGifs, next, gifs, }) => (
+
+const Routes = () => (
 <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme, { userAgent: false, })}>
 
   <BrowserRouter>
     <div>
-      <ul>
-        {/* 3. Link to some paths with `Link` */}
-        <li><Link to="/">Home</Link></li>
-        <li><Link to="/word">Word</Link></li>
-        <li><Link to="/topics">Topics</Link></li>
-
-      </ul>
 
       <hr/>
 
@@ -85,36 +83,19 @@ const App = ({ word, guesses, resetAnimals, remaining, startGame, getRandomWord,
         When the current location matches the `pattern`
         then the `component` will render.
       */}
-      <Match exactly pattern="/" component={App} />
-      <Match pattern="/word" component={Word} />
+      <Match pattern="/" component={App} />
+      <Match pattern="/about" component={Word} />
       <Match pattern="/topics" component={Topics} />
       {/* If none of those match, then a sibling `Miss` will render. */}
       <Miss component={NoMatch}/>
     </div>
   </BrowserRouter>
 
-  <div className="App">
-    <AppBar
-      title={<FlatButton label={'Get Word'} secondary onClick={getRandomWord} />}
-      iconClassNameRight="muidocs-icon-navigation-expand-more"
-    />
-    <Grid images={gifs}/>
-
-    <div className="container">
-      <h1> GUESSES REMAINING {remaining} </h1>
-      <FlatButton label={'Get Trending Gifs'} secondary onClick={() => {
-        resetAnimals(animals.slice(0));
-      }} />
-      <Word word={word}/>
-      <h1>{[ ...guesses, ].map((c, i) => <Letter key={i} chr={c}/>)}</h1>
-
-    </div>
-
-  </div>
 </MuiThemeProvider>
 
 );
 
 //         {gifs.map((g, i) => <img key={i} src={g.url}/>)}
 
-export default connect(mapStateToProps, { ...wordActs, ...gifActs, ...statusActs, ...animalActs, })(App);
+// export default connect(mapStateToProps, { ...wordActs, ...gifActs, ...statusActs, ...animalActs, })(App);
+export default connect(mapStateToProps)(Routes);

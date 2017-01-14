@@ -22,7 +22,12 @@
       <AppBar
         title={<FlatButton label={'Get Word'} secondary onClick={getRandomWord} />}
         iconClassNameRight="muidocs-icon-navigation-expand-more"
-      />
+      >
+        <Link to="/"><FlatButton label={'Home'} secondary /></Link>
+        <Link to="/word"><FlatButton label={'Word'} secondary /></Link>
+        <Link to="/topics"><FlatButton label={'Topics'} secondary /></Link>
+
+      </AppBar>
       <Grid images={gifs}/>
 
       <div className="container">
@@ -36,7 +41,7 @@
       </div>
 
     </div>
-</MuiThemeProvider>
+  </MuiThemeProvider>
 
 );
 
