@@ -75,9 +75,16 @@ const Routes = () => (
 <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme, { userAgent: false, })}>
 
   <BrowserRouter>
-    <div>
+    <div className="App">
+      <AppBar
+        title={'Animals'}
+        iconClassNameRight="muidocs-icon-navigation-expand-more"
+      >
+        <Link to="/"><FlatButton label={'Home'} secondary /></Link>
+        <Link to="/word"><FlatButton label={'Word'} secondary /></Link>
+        <Link to="/topics"><FlatButton label={'Topics'} secondary /></Link>
 
-      <hr/>
+      </AppBar>
 
       {/* 4. Render some `<Match/>` components.
         When the current location matches the `pattern`

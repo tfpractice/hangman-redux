@@ -9,6 +9,7 @@
   import Letter from './letter';
   import Word from './word';
   import Grid from './grid';
+  import Paper from 'material-ui/Paper';
   import { animalActs, gifActs, reactionActs, statusActs, wordActs, } from '../actions';
 
   const mapStateToProps = ({ word, guesses, synonyms, animals, remaining, gifs, reactions, }) =>
@@ -16,20 +17,23 @@
  word, guesses, remaining, gifs, next: reactions[0], animals,
 });
 
+  { /* <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme, { userAgent: false, })}>
+  <div className="App">
+    <AppBar
+      title={<FlatButton label={'Get Word'} secondary onClick={getRandomWord} />}
+      iconClassNameRight="muidocs-icon-navigation-expand-more"
+    >
+      <Link to="/"><FlatButton label={'Home'} secondary /></Link>
+      <Link to="/word"><FlatButton label={'Word'} secondary /></Link>
+      <Link to="/topics"><FlatButton label={'Topics'} secondary /></Link>
+
+    </AppBar>
+  */ }
+
   const App = ({ word, guesses, resetAnimals, remaining, startGame, getRandomWord, animals, getGifs, next, gifs, }) => (
-  <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme, { userAgent: false, })}>
-    <div className="App">
-      <AppBar
-        title={<FlatButton label={'Get Word'} secondary onClick={getRandomWord} />}
-        iconClassNameRight="muidocs-icon-navigation-expand-more"
-      >
-        <Link to="/"><FlatButton label={'Home'} secondary /></Link>
-        <Link to="/word"><FlatButton label={'Word'} secondary /></Link>
-        <Link to="/topics"><FlatButton label={'Topics'} secondary /></Link>
+    <div>
 
-      </AppBar>
       <Grid images={gifs}/>
-
       <div className="container">
         <h1> GUESSES REMAINING {remaining} </h1>
         <FlatButton label={'Get Trending Gifs'} secondary onClick={() => {
@@ -39,9 +43,7 @@
         <h1>{[ ...guesses, ].map((c, i) => <Letter key={i} chr={c}/>)}</h1>
 
       </div>
-
     </div>
-  </MuiThemeProvider>
 
 );
 
