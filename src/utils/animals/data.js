@@ -18,7 +18,7 @@ export const ANIMARR = [
   ], [ 'Bacteria', [
     'Culture', ],
   ], [ 'Badgers', [
-    'Cete, Colony, Set, Company', ],
+    'Colony, Set, Company', ],
   ], [ 'Barracudas', [
     'Battery', ],
   ], [ 'Bats', [
@@ -46,7 +46,7 @@ export const ANIMARR = [
   ], [ 'Bison', [
     'Herd', ],
   ], [ 'Bitterns', [
-    'Sedge, Seige', ],
+    'Sedge', ],
   ], [ 'Bloodhounds', [
     'Sute', ],
   ], [ 'Bobolinks', [
@@ -299,7 +299,7 @@ export const ANIMARR = [
     ], [ 'Penguins ', [
       'Colony, Rookery, Huddle', ],
     ], [ 'Penguins ', [
-      'Cr�che', ],
+      'Creche', ],
     ], [ 'Pheasants ', [
       'Nest, Nye', ],
     ], [ 'Pheasants ', [
@@ -328,8 +328,6 @@ export const ANIMARR = [
       'Prickle', ],
     ], [ 'Porpoises', [
       'Herd, Pod, School, Crowd, Shoal', ],
-    ], [ 'Prairie Dogs', [
-      'Coterie', ],
     ], [ 'Ptarmigans', [
       'Covey', ],
     ], [ 'Quail', [
@@ -468,7 +466,7 @@ export const ANIMARR = [
       'Zeal, Crossing, Dazzle, Cohorts, Herd', ],
     ],];
 
-const rm = [
+export const missingAnimals = [
   'choughs',
   'dotterel',
   'dunlins',
@@ -486,9 +484,17 @@ const rm = [
   'weasles',
   'wildfowl', ];
 
-const normalize = s => s.trim().toLowerCase();
-const normalizePair = ([ k, v, ]) => [ normalize(k), v.map(normalize), ];
+export const missingGroups = [
+  'sute', 'obstinancy', 'seige', 'clattering', 'piteousness',
+  'paddling', 'fesnying', 'implausibility', 'sault', 'tiding',
+  'sord', 'bew', 'doading', 'escargatoire', 'murmuration',
+  'mustering', 'knab', 'dule', 'clat', ];
 
-export const ANIMAP = new Map(ANIMARR.map(normalizePair));
-export const ANIMALS = [ ...ANIMAP.keys(), ];
-export const NAMES = [ ANIMAP.values(), ];
+// emove ["", "mustering", "knab", "dule", "clat"]
+// const split = delim => str => str.split(delim);
+// const normalize = s => s.trim().toLowerCase();
+// const normalizePair = ([ k, v, ]) => [ normalize(k), v.map(normalize), ];
+//
+// export const ANIMAP = new Map(ANIMARR.map(normalizePair));
+// export const ANIMALS = [ ...ANIMAP.keys(), ];
+// export const NAMES = [ ANIMAP.values(), ];

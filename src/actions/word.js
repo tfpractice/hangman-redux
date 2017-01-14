@@ -23,7 +23,7 @@ axios.get(`${WORDS_API_URL}/${wrd}/frequency`, { headers, })
   .catch((e) => {
     console.error(e, remove.push(wrd));
     console.log('remove', remove);
-    return remove;
+    return new Map().set(wrd, 0);
   });
 
 export const defFQ = [ '', 0, ];
