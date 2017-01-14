@@ -21,14 +21,8 @@ const getMaxGroup = (animal) => {
     .then(sortFQ)
     .then((c) => { console.log('c', c); return c; })
     .then(first)
-    .then((f) => {
-      console.log('animal, f', animal, f);
-      console.log('new Map().set(animal, f)', new Map().set(animal, f));
-      return new Map().set(animal, f);
-    })
+    .then(f => new Map().set(animal, f))
     .catch(console.error);
 };
 
 export const sortedMap = anims => Promise.all(anims.map(getMaxGroup));
-
-Promise.resolve(sortedMap([ 'bears', 'ants', 'auks', ])).then(console.log);

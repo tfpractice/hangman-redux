@@ -13,13 +13,26 @@ gifs.map(({ images: { downsized_medium, }, }) => downsized_medium);
 
 const getData = ({ data, }) => data;
 
-export const getTrending = q => dispatch =>
-axios.get(GIPHY_TRENDING_URL, { params: { api_key, q, }, })
+export const getGifs = q => dispatch =>
+axios.get(GIPHY_SEARCH_URL, { params: { api_key, q, }, })
   .then(getData)
   .then(getData)
   .then(getDownSizedMD)
   .then(updateGifs)
   .then(dispatch)
-  .then(x => getRandomWord(q))
-  .then(dispatch)
+
+  // .then(x => getRandomWord(q))
+  // .then(dispatch)
   .catch(console.error);
+
+export const getTrending = q => dispatch =>
+  axios.get(GIPHY_TRENDING_URL, { params: { api_key, q, }, })
+    .then(getData)
+    .then(getData)
+    .then(getDownSizedMD)
+    .then(updateGifs)
+    .then(dispatch)
+
+    // .then(x => getRandomWord(q))
+    // .then(dispatch)
+    .catch(console.error);

@@ -489,12 +489,3 @@ export const missingGroups = [
   'paddling', 'fesnying', 'implausibility', 'sault', 'tiding',
   'sord', 'bew', 'doading', 'escargatoire', 'murmuration',
   'mustering', 'knab', 'dule', 'clat', ];
-
-// emove ["", "mustering", "knab", "dule", "clat"]
-// const split = delim => str => str.split(delim);
-// const normalize = s => s.trim().toLowerCase();
-// const normalizePair = ([ k, v, ]) => [ normalize(k), v.map(normalize), ];
-//
-// export const ANIMAP = new Map(ANIMARR.map(normalizePair));
-// export const ANIMALS = [ ...ANIMAP.keys(), ];
-// export const NAMES = [ ANIMAP.values(), ];

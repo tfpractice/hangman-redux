@@ -7,14 +7,14 @@
   import AppBar from 'material-ui/AppBar';
   import Letter from './letter';
   import Word from './word';
-  import { gifActs, reactionActs, wordActs, } from '../actions';
+  import { animalActs, gifActs, reactionActs, statusActs, wordActs, } from '../actions';
 
-  const mapStateToProps = ({ word, guesses, synonyms, remaining, gifs, reactions, }) =>
+  const mapStateToProps = ({ word, guesses, synonyms, animals, remaining, gifs, reactions, }) =>
 ({
- word, guesses, remaining, gifs, next: reactions[0],
+ word, guesses, remaining, gifs, next: reactions[0], animals,
 });
 
-  const App = ({ word, guesses, remaining, getRandomWord, getTrending, next, gifs, }) => (
+  const App = ({ word, guesses, resetAnimals, remaining, startGame, getRandomWord, animals, getGifs, next, gifs, }) => (
   <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme, { userAgent: false, })}>
     <div className="App">
       <AppBar
@@ -23,17 +23,11 @@
       />
       <div className="container">
         <h1> GUESSES REMAINING {remaining} </h1>
-        <FlatButton label={'Get Trending Gifs'} secondary onClick={() => getTrending(next)} />
+        <FlatButton label={'startGame Gifs'} secondary onClick={startGame} />
         <FlatButton label={'Get Trending Gifs'} secondary onClick={() => {
-          wordActs.animalFreq();
-          console.log('wordActs.orderFQ');
+          resetAnimals(animals.slice(0));
         }
 
-          // Promise.all([ 'Albatross',
-          //   'Alligators',
-          //   'Apes',
-          //   'Antelope',
-          //   'Ants', ].map(wordActs.getFrequency))
         } />
         <Word word={word}/>
         <h1>{[ ...guesses, ].map((c, i) => <Letter key={i} chr={c}/>)}</h1>
@@ -45,4 +39,4 @@
 
 );
 
-  export default connect(mapStateToProps, { ...wordActs, ...gifActs, })(App);
+  export default connect(mapStateToProps, { ...wordActs, ...gifActs, ...statusActs, ...animalActs, })(App);
