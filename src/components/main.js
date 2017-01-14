@@ -7,6 +7,7 @@
   import AppBar from 'material-ui/AppBar';
   import Letter from './letter';
   import Word from './word';
+  import Grid from './grid';
   import { animalActs, gifActs, reactionActs, statusActs, wordActs, } from '../actions';
 
   const mapStateToProps = ({ word, guesses, synonyms, animals, remaining, gifs, reactions, }) =>
@@ -21,22 +22,23 @@
         title={<FlatButton label={'Get Word'} secondary onClick={getRandomWord} />}
         iconClassNameRight="muidocs-icon-navigation-expand-more"
       />
+      <Grid images={gifs}/>
+
       <div className="container">
         <h1> GUESSES REMAINING {remaining} </h1>
-        <FlatButton label={'startGame Gifs'} secondary onClick={startGame} />
         <FlatButton label={'Get Trending Gifs'} secondary onClick={() => {
           resetAnimals(animals.slice(0));
-        }
-
-        } />
+        }} />
         <Word word={word}/>
         <h1>{[ ...guesses, ].map((c, i) => <Letter key={i} chr={c}/>)}</h1>
-        {gifs.map((g, i) => <img key={i} src={g.url}/>)}
+
       </div>
 
     </div>
 </MuiThemeProvider>
 
 );
+
+//         {gifs.map((g, i) => <img key={i} src={g.url}/>)}
 
   export default connect(mapStateToProps, { ...wordActs, ...gifActs, ...statusActs, ...animalActs, })(App);
