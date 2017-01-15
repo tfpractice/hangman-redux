@@ -11,6 +11,7 @@ import Word from './word';
 import Grid from './grid';
 import { animalActs, gifActs, statusActs, wordActs, } from '../actions';
 import App from './main';
+
 const mapStateToProps = ({ word, guesses, synonyms, animals, remaining, gifs, }) =>
 ({
 word, guesses, remaining, gifs, animals,

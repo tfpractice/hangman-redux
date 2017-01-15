@@ -20,6 +20,7 @@
     <div>
       <Grid images={gifs}/>
       <div className="container">
+        <h1>{animals[0]}</h1>
         <h1> GUESSES REMAINING {remaining} </h1>
         <FlatButton label={'Get Trending Gifs'} secondary onClick={() => {
           resetAnimals(animals.slice(0));

@@ -23,8 +23,6 @@ const GuessForm = ({ guessLetter, guessForm, formID, dispatch, }) => (
       <TextField id="charGuess" hintText="guess characters"
         onKeyPress={({ key, }) => guessLetter(key)}
         onChange={(e, val, ...args) => {
-          console.log('e, val', e, val, args);
-
           (reset('charGuess'));
         }} />
       <ReduxGuess
