@@ -30,7 +30,6 @@ const Topics = ({ pathname, pattern, }) => (
   <div>
     <h2>Topics</h2>
     <ul>
-      {}
       <li><Link to={`${pathname}/rendering`}>Rendering with React</Link></li>
       <li><Link to={`${pathname}/components`}>Components</Link></li>
       <li><Link to={`${pathname}/props-v-state`}>Props v. State</Link></li>
