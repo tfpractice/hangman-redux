@@ -7,4 +7,4 @@ import * as statusActs from './status';
 import * as reactionActs from './reactions';
 import * as animalActs from './animal';
 export { guessActs, remainingActs, wordActs, statusActs,
-  reactionActs, gifActs, animalActs, synonymActs, };
+  gifActs, animalActs, synonymActs, };

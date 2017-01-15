@@ -10,13 +10,13 @@
   import Word from './word';
   import Grid from './grid';
   import Paper from 'material-ui/Paper';
-  import { animalActs, gifActs, reactionActs, statusActs, wordActs, } from '../actions';
-  
-  const mapStateToProps = ({ word, guesses, synonyms, animals, remaining, gifs, reactions, }) =>
+  import { animalActs, gifActs, statusActs, wordActs, } from '../actions';
+
+  const mapStateToProps = ({ word, guesses, synonyms, animals, remaining, gifs, }) =>
 ({
- word, guesses, remaining, gifs, next: reactions[0], animals,
+ word, guesses, remaining, gifs, animals,
 });
-  const App = ({ word, guesses, resetAnimals, remaining, startGame, getRandomWord, animals, getGifs, next, gifs, }) => (
+  const App = ({ word, guesses, resetAnimals, remaining, startGame, getRandomWord, animals, getGifs, gifs, }) => (
     <div>
       <Grid images={gifs}/>
       <div className="container">

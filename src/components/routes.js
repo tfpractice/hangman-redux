@@ -9,11 +9,11 @@ import AppBar from 'material-ui/AppBar';
 import Letter from './letter';
 import Word from './word';
 import Grid from './grid';
-import { animalActs, gifActs, reactionActs, statusActs, wordActs, } from '../actions';
+import { animalActs, gifActs, statusActs, wordActs, } from '../actions';
 import App from './main';
-const mapStateToProps = ({ word, guesses, synonyms, animals, remaining, gifs, reactions, }) =>
+const mapStateToProps = ({ word, guesses, synonyms, animals, remaining, gifs, }) =>
 ({
-word, guesses, remaining, gifs, next: reactions[0], animals,
+word, guesses, remaining, gifs, animals,
 });
 
 const NoMatch = ({ location, }) => (

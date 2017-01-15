@@ -10,5 +10,5 @@ import reactions from './reactions';
 import animals from './animals';
 
 export default combineReducers({
-animals, word, guesses, remaining, status, reactions, gifs, synonyms, forms,
+animals, word, guesses, remaining, status, gifs, synonyms, forms,
 });
