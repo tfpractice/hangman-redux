@@ -11,7 +11,10 @@ export const incrementRem = () =>
 
 export const decrementRem = () => (dispatch, getState) =>
   Promise.resolve(dispatch({ type: DECREMENT_REMAINING, curry: dec(), }))
-    .then(x => dispatch(setStatus(getState().remaining < 1)));
+    .then((x) => {
+      console.log('x', getState().remaining);
+      dispatch(setStatus(getState().remaining < 1));
+    });
 
 export const resetRem = num =>
   ({ type: RESET_REMAINING, curry: reset(num), });

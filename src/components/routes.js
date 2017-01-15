@@ -10,12 +10,13 @@ import Letter from './letter';
 import Word from './word';
 import About from './about';
 import Grid from './grid';
+import Stats from './stats';
 import { animalActs, gifActs, statusActs, wordActs, } from '../actions';
-import Main from './main';
+import Main from './game';
 
-const mapStateToProps = ({ word, guesses, synonyms, animals, remaining, gifs, }) =>
+const mapStateToProps = ({ status, word, guesses, synonyms, animals, remaining, gifs, }) =>
 ({
-word, guesses, remaining, gifs, animals,
+word, guesses, remaining, gifs, animals, status,
 });
 
 const NoMatch = ({ location, }) => (
@@ -25,30 +26,7 @@ const NoMatch = ({ location, }) => (
   </div>
 );
 
-const Topics = ({ pathname, pattern, }) => (
-
-  <div>
-    <h2>Topics</h2>
-    <ul>
-      <li><Link to={`${pathname}/rendering`}>Rendering with React</Link></li>
-      <li><Link to={`${pathname}/components`}>Components</Link></li>
-      <li><Link to={`${pathname}/props-v-state`}>Props v. State</Link></li>
-    </ul>
-    <Match pattern={`${pathname}/:topicId`} component={Topic}/>
-    <Match pattern={pathname} exactly render={() => (
-      <h3>Please select a topic</h3>
-    )}/>
-  </div>
-);
-
-const Topic = ({ params, }) => (
-
-  <div>
-    <h3>{params.topicId}</h3>
-  </div>
-);
-
-const Routes = () => (
+const Routes = ({ status: { over, }, playGame, }) => (
 <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme, { userAgent: false, })}>
 
   <BrowserRouter>
@@ -58,19 +36,23 @@ const Routes = () => (
         iconClassNameRight="muidocs-icon-navigation-expand-more"
       >
         <Link to="/"><FlatButton label={'Home'} secondary /></Link>
-        <Link to="/word"><FlatButton label={'Word'} secondary /></Link>
+        <Link to="/play"><FlatButton label={'Play'} secondary onClick={playGame} /></Link>
         <Link to="/about"><FlatButton label={'About'} secondary /></Link>
-        <Link to="/topics"><FlatButton label={'Topics'} secondary /></Link>
       </AppBar>
-      <Match pattern="/" component={Main} />
-      <Match pattern="/about" component={About} />
-      <Match pattern="/word" component={Word} />
-      <Match pattern="/topics" component={Topics} />
-      <Miss component={NoMatch}/>
+      <div className="container">
+
+        <Match exactly pattern="/" component={About} />
+        <Match pattern="/play" render={props =>
+          !over ? <Main/> : <Stats/>}/>
+        <Match pattern="/about" component={About} />
+        <Match pattern="/word" component={Word} />
+        <Miss component={NoMatch}/>
+      </div>
+
     </div>
   </BrowserRouter>
 </MuiThemeProvider>
 
 );
 
-export default connect(mapStateToProps)(Routes);
+export default connect(mapStateToProps, statusActs)(Routes);

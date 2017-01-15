@@ -5,6 +5,7 @@ import { guessActs, wordActs, } from '../actions';
 import FlatButton from 'material-ui/FlatButton';
 import Divider from 'material-ui/Divider';
 import Chip from 'material-ui/Chip';
+
 const styles = {
   chip: { margin: 4, },
   wrapper: {
@@ -12,9 +13,6 @@ const styles = {
     flexWrap: 'wrap',
   },
 };
-
-const unknowns = word => guesses =>
-new Set(word.split('').filter(c => !guesses.has(c.toUpperCase())));
 
 const mapStateToProps = ({ guesses, synonyms, word, remaining, animals, }, ) =>
 ({
@@ -26,22 +24,20 @@ const mapStateToProps = ({ guesses, synonyms, word, remaining, animals, }, ) =>
 });
 
 const Word = ({
- guesses, word, characters, resetWord, synonyms, guessLetter,
+ guesses, word, characters, synonyms, guessLetter,
 remaining,
-animals,
 }) => (
   <div style={styles.wrapper}>
     <h1> GUESSES: {[ ...guesses, ].map((c, i) => <Letter key={i} chr={c}/>)}</h1>
     <h1> {remaining} REMAINING
     </h1>
-
     <Divider/>
     <h1>{characters.map((c, i) => <Letter key={i} chr={c}/>)}</h1>
-
     <input type="text" onKeyPress={({ key, }) => guessLetter(key)} />
-    {synonyms.map((s, i) => <Chip key={i} style={styles.chip}>
-      {s}
-    </Chip>)}
+    {synonyms.map((s, i) =>
+      <Chip key={i} style={styles.chip}>
+        {s}
+      </Chip>)}
 </div>
 );
 
