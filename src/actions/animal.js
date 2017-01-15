@@ -1,13 +1,10 @@
 import { collections, } from 'turmeric-utils';
 import { ADD_ANIMAL, ANIMAL_ACTIONS,
-REMOVE_ANIMAL,
-RESET_ANIMALS,
-SET_CURRENT_ANIMAL, } from '../constants';
+REMOVE_ANIMAL, RESET_ANIMALS, SET_CURRENT_ANIMAL, } from '../constants';
 import { ANIMALS, ANIMAP, } from '../utils';
 const { removeSet, spread, } = collections;
 
 import { getGifs, } from './gifs';
-
 import { playGame, } from './status';
 import { getWord, resetWord, } from './word';
 
