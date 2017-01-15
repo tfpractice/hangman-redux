@@ -1,6 +1,5 @@
 import axios from 'axios';
 
-// import 'isomorphic-fetch';
 import { REACTION_ACTIONS, UPDATE_REACTIONS, } from '../constants';
 import { ANIMALS, GIPHY_CATEGORIES_URL, HEADERS as headers, NAMES, splitNames, } from '../utils';
 const update = syns => prev => syns || [ 'eye roll', 'facepalm', 'happy', 'high five', 'no', 'sad', 'kiss', 'lol', 'shrug', 'thumbs up', 'wink', ];
@@ -8,7 +7,5 @@ const update = syns => prev => syns || [ 'eye roll', 'facepalm', 'happy', 'high 
 export const updateReactions = syns =>
 ({ type: UPDATE_REACTIONS, curry: update(syns), });
 const aMap = new Map(ANIMALS.entries());
-
-// const narr = NAMES.map(s=> );
 
 export const getReactions = () => console.log('getReactions', aMap);

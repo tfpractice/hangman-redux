@@ -19,6 +19,4 @@ const firstAnimal = animals => animals.pop();
 export const resetAnimals = next => (dispatch) => {
   dispatch({ type: RESET_ANIMALS, curry: reset(next), });
   dispatch(getWord(getName(firstAnimal(next))));
-
-  // dispatch(resetWord(ANIMAP.get(next[0]).pop()));
 };
