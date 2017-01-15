@@ -60,11 +60,6 @@ const tilesData = [
   },
 ];
 
-// const mapStateToProps(state, {images})=>{}
-
-/**
- * This example demonstrates the horizontal scrollable single-line grid list of images.
- */
 const GridListExampleSingleLine = ({ images, }) => (
   <div style={styles.root}>
     <GridList style={styles.gridList} cols={2.2}>

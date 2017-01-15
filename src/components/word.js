@@ -22,11 +22,9 @@ const Word = ({ guesses, word, characters, resetWord, synonyms, guessLetter, }) 
   <div style={styles.wrapper}>
     <h1>{characters.map((c, i) => <Letter key={i} chr={c}/>)}</h1>
     <input type="text" onKeyPress={({ key, }) => guessLetter(key)} />
-
     {synonyms.map((s, i) => <Chip key={i} style={styles.chip}>
       {s}
     </Chip>)}
-
 </div>
 );
 

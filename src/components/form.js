@@ -25,7 +25,6 @@ const GuessForm = ({ guessLetter, guessForm, formID, dispatch, }) => (
         onChange={(e, val, ...args) => {
           console.log('e, val', e, val, args);
 
-          // guessLetter(val);
           (reset('charGuess'));
         }} />
       <ReduxGuess
@@ -35,5 +34,3 @@ const GuessForm = ({ guessLetter, guessForm, formID, dispatch, }) => (
   );
 
 export default connect(null, guessActs)(GuessForm);
-
-// export default connect()(reduxForm()(GuessForm));
