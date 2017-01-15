@@ -1,4 +1,7 @@
 export * from './data';
+import { collections, } from 'turmeric-utils';
+const { removeSet, diff, } = collections;
+
 import { ANIMARR, missingGroups, } from './data';
 import { first, freqMap, sortFQ, } from '../words';
 
@@ -11,6 +14,21 @@ const normalizePair = ([ k, v, ]) =>
 
 export const ANIMAP = new Map(ANIMARR.map(normalizePair));
 export const ANIMALS = [ ...ANIMAP.keys(), ];
+
+export const getRandom = arr => arr[Math.floor(Math.random() * arr.length)];
+
+export const ranimals = (coll, count) => {
+  let results = [];
+
+  while (results.length < count) {
+    results = results.concat(getRandom(diff(coll)(results)));
+  }
+  return results;
+};
+
+console.log('ranimals', ranimals(ANIMALS, 10));
+console.log('ranimals', ranimals(ANIMALS, 10));
+console.log('ranimals', ranimals(ANIMALS, 10));
 
 export const NAMES = [ ...ANIMAP.values(), ];
 export const ALL_NAMES = NAMES.reduce((a = [], c) => a.concat(c), [])
