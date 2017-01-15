@@ -1,5 +1,5 @@
 import { ANIMAL_ACTIONS, } from '../constants';
-import { ANIMALS, ANIMAP, } from '../utils';
+import { ANIMALS, ANIMAP, getXRandom, } from '../utils';
 
-export default (state = ANIMALS.slice(0, 10), { type, curry, }) =>
+export default (state = getXRandom(ANIMALS, 10), { type, curry, }) =>
 ANIMAL_ACTIONS.has(type) ? curry(state) : state;

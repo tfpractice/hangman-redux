@@ -17,7 +17,7 @@ export const ANIMALS = [ ...ANIMAP.keys(), ];
 
 export const getRandom = arr => arr[Math.floor(Math.random() * arr.length)];
 
-export const ranimals = (coll, count) => {
+export const getXRandom = (coll, count) => {
   let results = [];
 
   while (results.length < count) {
@@ -26,9 +26,9 @@ export const ranimals = (coll, count) => {
   return results;
 };
 
-console.log('ranimals', ranimals(ANIMALS, 10));
-console.log('ranimals', ranimals(ANIMALS, 10));
-console.log('ranimals', ranimals(ANIMALS, 10));
+console.log('ranimals', getXRandom(ANIMALS, 10));
+console.log('ranimals', getXRandom(ANIMALS, 10));
+console.log('ranimals', getXRandom(ANIMALS, 10));
 
 export const NAMES = [ ...ANIMAP.values(), ];
 export const ALL_NAMES = NAMES.reduce((a = [], c) => a.concat(c), [])
