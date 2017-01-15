@@ -10,7 +10,7 @@ export const endGame = () =>
 export const playGame = () => (dispatch) => {
   dispatch({ type: SET_STATUS, curry: set(false), });
   dispatch(resetGuesses());
-  dispatch(resetRem());
+  dispatch(resetRem(10));
   dispatch(resetAnimals());
 };
 export const setStatus = over =>

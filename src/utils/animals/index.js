@@ -26,10 +26,6 @@ export const getXRandom = (coll, count) => {
   return results;
 };
 
-console.log('ranimals', getXRandom(ANIMALS, 10));
-console.log('ranimals', getXRandom(ANIMALS, 10));
-console.log('ranimals', getXRandom(ANIMALS, 10));
-
 export const NAMES = [ ...ANIMAP.values(), ];
 export const ALL_NAMES = NAMES.reduce((a = [], c) => a.concat(c), [])
 .filter(hasFreq(new Set(missingGroups)));
