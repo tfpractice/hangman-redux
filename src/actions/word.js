@@ -21,18 +21,19 @@ const defRet = ({ word: '', frequency: { zipf: 0, }, });
 const remove = [];
 const flatten = (a = [], b = []) => [ ...a, ...b, ];
 
+const hasSynonyms = r => r.synonyms;
+const tapSyn = ({ synonyms = [], }) => synonyms;
+
 export const getWord = wrd => dispatch =>
   axios.get(`${WORDS_API_URL}/${wrd}`, { headers, })
     .then(({ data: { word, results, }, }) => {
-      console.log('random results', word, results);
-      const syns = results.filter(r => r.synonyms)
-      .map(r => r.synonyms).reduce(flatten, []);
+      const syns = results.map(tapSyn).reduce(flatten, []);
 
-      console.log('synRes', syns);
+      dispatch(resetWord(word));
       dispatch(updateSynonyms(syns));
       dispatch(getGifs(wrd));
       return word;
-    }).then(resetWord).then(dispatch)
+    })
     .catch(console.error);
 
 export const getRandomWord = wrd => dispatch =>
