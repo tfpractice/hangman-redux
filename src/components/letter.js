@@ -2,7 +2,7 @@ import React from 'react';
 import { connect, } from 'react-redux';
 
 const mapStateToProps = ({ guesses, }, { chr, }) =>
-({ isGuessed: new Set(guesses).has(chr.toUpperCase()), });
+({ isGuessed: (guesses).has(chr.toUpperCase()), });
 
 const Letter = ({ chr, isGuessed, }) => (<b>
   {isGuessed ? ` ${chr} ` : ' ___ ' }

@@ -8,9 +8,10 @@ import FlatButton from 'material-ui/FlatButton';
 import AppBar from 'material-ui/AppBar';
 import Letter from './letter';
 import Word from './word';
+import About from './about';
 import Grid from './grid';
 import { animalActs, gifActs, statusActs, wordActs, } from '../actions';
-import App from './main';
+import Main from './main';
 
 const mapStateToProps = ({ word, guesses, synonyms, animals, remaining, gifs, }) =>
 ({
@@ -23,11 +24,7 @@ const NoMatch = ({ location, }) => (
     <p>Sorry but {location.pathname} didn’t match any pages</p>
   </div>
 );
-const About = () => (
-  <div>
-    <h2>About</h2>
-  </div>
-);
+
 const Topics = ({ pathname, pattern, }) => (
 
   <div>
@@ -56,17 +53,19 @@ const Routes = () => (
 <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme, { userAgent: false, })}>
 
   <BrowserRouter>
-    <div className="App">
+    <div className="Main">
       <AppBar
         title={'Animals'}
         iconClassNameRight="muidocs-icon-navigation-expand-more"
       >
         <Link to="/"><FlatButton label={'Home'} secondary /></Link>
         <Link to="/word"><FlatButton label={'Word'} secondary /></Link>
+        <Link to="/about"><FlatButton label={'About'} secondary /></Link>
         <Link to="/topics"><FlatButton label={'Topics'} secondary /></Link>
       </AppBar>
-      <Match pattern="/" component={App} />
-      <Match pattern="/about" component={Word} />
+      <Match pattern="/" component={Main} />
+      <Match pattern="/about" component={About} />
+      <Match pattern="/word" component={Word} />
       <Match pattern="/topics" component={Topics} />
       <Miss component={NoMatch}/>
     </div>
