@@ -14,16 +14,16 @@
 
   const mapStateToProps = ({ word, guesses, synonyms, animals, remaining, gifs, }) =>
 ({
- word, guesses, remaining, gifs, animals,
+ word, guesses, remaining, gifs, animals, animal: animals[0],
 });
-  const App = ({ word, guesses, resetAnimals, remaining, startGame, getRandomWord, animals, getGifs, gifs, }) => (
+  const App = ({ word, guesses, resetAnimals, animal, remaining, startGame, getRandomWord, animals, getGifs, gifs, }) => (
     <div>
       <Grid images={gifs}/>
       <div className="container">
         <h1>{animals[0]}</h1>
         <h1> GUESSES REMAINING {remaining} </h1>
         <FlatButton label={'Get Trending Gifs'} secondary onClick={() => {
-          resetAnimals(animals.slice(0));
+          resetAnimals(animals.slice(1));
         }} />
         <Word word={word}/>
         <h1>{[ ...guesses, ].map((c, i) => <Letter key={i} chr={c}/>)}</h1>

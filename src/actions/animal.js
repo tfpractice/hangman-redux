@@ -14,7 +14,7 @@ import { getWord, resetWord, } from './word';
 const reset = anims => prv => anims;
 const remove = anim => state => removeSet(state)(anim);
 const getName = name => ANIMAP.get(name).pop();
-const firstAnimal = animals => animals.pop();
+const firstAnimal = animals => animals.shift();
 
 export const resetAnimals = next => (dispatch) => {
   dispatch({ type: RESET_ANIMALS, curry: reset(next), });
