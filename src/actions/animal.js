@@ -8,17 +8,19 @@ import { getGifs, } from './gifs';
 import { playGame, } from './status';
 import { getWord, resetWord, } from './word';
 
-const update = next => prv => ({ ...prv, correct: prv.correct.concat(next), });
-const reset = all => prv => ({ ...prv, all, });
+const update = next => prv => prv.concat(next);
+const reset = all => prv => all;
 const remove = anim => state => removeSet(state)(anim);
 const getName = name => ANIMAP.get(name).pop();
 const firstAnimal = animals => animals.shift();
 
 export const resetAnimals = (next = getXRandom(ANIMALS, 10)) => (dispatch) => {
   dispatch({ type: RESET_ANIMALS, curry: reset(next), });
-
   dispatch(getWord(getName(firstAnimal(next))));
 };
 
-export const updateCorrect = corr =>
-({ type: UPDATE_CORRECT_ANIMALS, curry: update(corr), });
+export const updateCorrect = corr => (dispatch, getState) =>
+Promise.resolve(
+  dispatch({ type: UPDATE_CORRECT_ANIMALS, curry: update(corr), }))
+  .then(x => dispatch(resetAnimals(getState().animals.all.slice(1))))
+  .catch(console.error);

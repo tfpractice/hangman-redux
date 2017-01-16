@@ -9,7 +9,7 @@ ANIMAL_ACTIONS.has(type) ? curry(state) : state;
 const correct = (state = [], { type, curry, }) =>
 CORRECT_ANIMAL_ACTIONS.has(type) ? curry(state) : state;
 
-const passed = (state = getXRandom(ANIMALS, 10), { type, curry, }) =>
+const passed = (state = [], { type, curry, }) =>
 PASSED_ANIMAL_ACTIONS.has(type) ? curry(state) : state;
 
 export default combineReducers({ all, correct, passed, });

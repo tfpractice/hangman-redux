@@ -12,7 +12,7 @@ import About from './about';
 import Grid from './grid';
 import Stats from './stats';
 import { animalActs, gifActs, statusActs, wordActs, } from '../actions';
-import Main from './game';
+import Game from './game';
 
 const mapStateToProps = ({ status, word, guesses, synonyms, animals, remaining, gifs, }) =>
 ({
@@ -30,7 +30,7 @@ const Routes = ({ status: { over, }, playGame, }) => (
 <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme, { userAgent: false, })}>
 
   <BrowserRouter>
-    <div className="Main">
+    <div className="Game">
       <AppBar
         title={'Animals'}
         iconClassNameRight="muidocs-icon-navigation-expand-more"
@@ -43,7 +43,7 @@ const Routes = ({ status: { over, }, playGame, }) => (
 
         <Match exactly pattern="/" component={About} />
         <Match pattern="/play" render={props =>
-          !over ? <Main/> : <Stats/>}/>
+          !over ? <Game/> : <Stats/>}/>
         <Match pattern="/about" component={About} />
         <Match pattern="/word" component={Word} />
         <Miss component={NoMatch}/>

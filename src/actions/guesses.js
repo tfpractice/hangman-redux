@@ -1,6 +1,7 @@
 import { CORRECT_GUESS, GUESS_ACTIONS, GUESS_LETTER, INCORRECT_GUESS, REPEAT_GUESS,
 RESET_GUESSES, } from '../constants';
 import { decrementRem, } from './remaining';
+import { updateCorrect, } from './animal';
 
 const add = str => ltrs => new Set(ltrs).add(str.toUpperCase());
 const reset = str => ltrs => new Set();
@@ -20,17 +21,16 @@ const newGuess = guess => (unk) => {
 export const resetGuesses = () =>
   ({ type: RESET_GUESSES, curry: reset(), });
 
-export const guessLetter = str => (dispatch, getState) =>
-correctGuess(str)(getState) ?
-dispatch({ type: GUESS_LETTER, curry: add(str), })
-: dispatch(decrementRem());
+const allGuessed = getState => unknowns(getState).size === 0;
 
-// Promise.resolve(dispatch({ type: GUESS_LETTER, curry: add(str), }))
-//   .then((x) => {
-//     console.log('correctGuess(str)(unknowns(getState))', newGuess(str)(unknowns(getState)));
-//     return newGuess(str)(unknowns(getState)) || dispatch(decrementRem());
-//   }
-// );
+export const guessLetter = str => (dispatch, getState) => {
+  if (correctGuess(str)(getState)) {
+    dispatch({ type: GUESS_LETTER, curry: add(str), });
+  }
+  allGuessed(getState) ?
+  dispatch(updateCorrect(getState().word))
+  : dispatch(decrementRem());
+};
 
 export const guessForm = ({ guess, }) => {
   console.log('guess', guess);
