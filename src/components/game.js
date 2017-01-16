@@ -9,7 +9,6 @@ const mapStateToProps = ({ word, guesses, synonyms, animals: { all, correct, }, 
 ({ word, correct, gifs, animal: all[0], });
 const Game = ({ word, gifs, animal, correct, }) => (
   <div>
-    <Grid images={gifs}/>
     <Word word={word}/>
     {correct.map((c, i) => <h1 key={i}>A {ANIMAP.get(c).join(', ')} of {c}</h1>)}
   </div>

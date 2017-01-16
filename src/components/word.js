@@ -7,6 +7,8 @@ import Divider from 'material-ui/Divider';
 import Chip from 'material-ui/Chip';
 import Form from './form';
 import Letter from './letter';
+import Grid from './grid';
+
 import { guessActs, wordActs, } from '../actions';
 
 const styles = {
@@ -17,35 +19,40 @@ const styles = {
   },
 };
 
-const mapStateToProps = ({ guesses, synonyms, word, remaining, animals, }, ) =>
+const mapStateToProps = ({ gifs, guesses, synonyms, word, remaining, animals, }, ) =>
 ({
  characters: (word.toUpperCase().split('')),
  synonyms,
  guesses,
  remaining,
  animal: animals.all[0],
+ gifs,
 });
 
 const Word = ({
  guesses, word, characters, synonyms, guessLetter, animal,
-remaining,
+remaining, gifs,
 }) => (
-  <div >
-    <h1> GUESSES:[ {[ ...guesses, ].map(
-      (c, i) => <Letter key={i} chr={c}/>)}] : {remaining} left
-    </h1>
-    <Divider/>
-    <div><h1>A </h1></div>
-    <div><h1>{characters.map((c, i) => <Letter key={i} chr={c}/>)}</h1></div>
-    <div><h1> of </h1></div>
-    <div><h1>{animal} </h1></div>
-    <Form/>
-    <div style={styles.wrapper}>{synonyms.map((s, i) =>
-      <Chip key={i} style={styles.chip}>
-        {s}
-      </Chip>)}
-  </div>
-</div>
-);
+  <Card>
+    <CardHeader
+      title={ <h1>{`A _____ of ${animal}`}</h1>}
+      subtitle={ <h5> GUESSES: [ {[ ...guesses, ].join(', ')} ] : {remaining} left </h5>}
+        />
 
+        <CardMedia>
+          <Grid images={gifs}/>
+          <h1>{characters.map((c, i) => <Letter key={i} chr={c}/>)}</h1>
+        </CardMedia>
+        <CardText>
+          <Form/>
+          <div style={styles.wrapper}>{synonyms.map((s, i) =>
+            <Chip key={i} style={styles.chip}>
+              {s}
+            </Chip>)}
+          </div>
+        </CardText>
+      </Card>
+
+        );
+        
 export default connect(mapStateToProps, { ...wordActs, ...guessActs, })(Word);
