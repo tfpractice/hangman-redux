@@ -10,9 +10,8 @@ import { getWord, resetWord, } from './word';
 
 const update = next => prv => prv.concat(next);
 const reset = all => prv => all;
-const remove = anim => state => removeSet(state)(anim);
-const getName = name => ANIMAP.get(name).pop();
-const firstAnimal = animals => animals.shift();
+const getName = name => ANIMAP.get(name)[0];
+const firstAnimal = animals => animals[0];
 
 export const resetAnimals = (next = getXRandom(ANIMALS, 10)) => (dispatch) => {
   dispatch({ type: RESET_ANIMALS, curry: reset(next), });

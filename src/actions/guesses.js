@@ -26,10 +26,12 @@ const allGuessed = getState => unknowns(getState).size === 0;
 export const guessLetter = str => (dispatch, getState) => {
   if (correctGuess(str)(getState)) {
     dispatch({ type: GUESS_LETTER, curry: add(str), });
+    if (allGuessed(getState)) {
+      dispatch(updateCorrect(getState().animals.all[0]));
+    }
+  } else {
+    dispatch(decrementRem());
   }
-  allGuessed(getState) ?
-  dispatch(updateCorrect(getState().word))
-  : dispatch(decrementRem());
 };
 
 export const guessForm = ({ guess, }) => {

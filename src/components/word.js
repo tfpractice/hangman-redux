@@ -20,24 +20,28 @@ const mapStateToProps = ({ guesses, synonyms, word, remaining, animals, }, ) =>
  synonyms,
  guesses,
  remaining,
- animals,
+ animal: animals.all[0],
 });
 
 const Word = ({
- guesses, word, characters, synonyms, guessLetter,
+ guesses, word, characters, synonyms, guessLetter, animal,
 remaining,
 }) => (
-  <div style={styles.wrapper}>
-    <h1> GUESSES: {[ ...guesses, ].map((c, i) => <Letter key={i} chr={c}/>)}</h1>
-    <h1> {remaining} REMAINING
+  <div >
+    <h1> GUESSES:[ {[ ...guesses, ].map(
+      (c, i) => <Letter key={i} chr={c}/>)}] : {remaining} left
     </h1>
     <Divider/>
-    <h1>{characters.map((c, i) => <Letter key={i} chr={c}/>)}</h1>
+    <div><h1>A </h1></div>
+    <div><h1>{characters.map((c, i) => <Letter key={i} chr={c}/>)}</h1></div>
+    <div><h1> of </h1></div>
+    <div><h1>{animal} </h1></div>
     <input type="text" onKeyPress={({ key, }) => guessLetter(key)} />
-    {synonyms.map((s, i) =>
+    <div style={styles.wrapper}>{synonyms.map((s, i) =>
       <Chip key={i} style={styles.chip}>
         {s}
       </Chip>)}
+  </div>
 </div>
 );
 
