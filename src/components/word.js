@@ -1,11 +1,13 @@
 import React from 'react';
 import { connect, } from 'react-redux';
-import Letter from './letter';
-import { guessActs, wordActs, } from '../actions';
+import { Card, CardActions, CardHeader, CardMedia, CardText, CardTitle, }
+from 'material-ui/Card';
 import FlatButton from 'material-ui/FlatButton';
 import Divider from 'material-ui/Divider';
 import Chip from 'material-ui/Chip';
 import Form from './form';
+import Letter from './letter';
+import { guessActs, wordActs, } from '../actions';
 
 const styles = {
   chip: { margin: 4, },
