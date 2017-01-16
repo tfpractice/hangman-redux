@@ -5,6 +5,7 @@ import { guessActs, wordActs, } from '../actions';
 import FlatButton from 'material-ui/FlatButton';
 import Divider from 'material-ui/Divider';
 import Chip from 'material-ui/Chip';
+import Form from './form';
 
 const styles = {
   chip: { margin: 4, },
@@ -36,7 +37,7 @@ remaining,
     <div><h1>{characters.map((c, i) => <Letter key={i} chr={c}/>)}</h1></div>
     <div><h1> of </h1></div>
     <div><h1>{animal} </h1></div>
-    <input type="text" onKeyPress={({ key, }) => guessLetter(key)} />
+    <Form/>
     <div style={styles.wrapper}>{synonyms.map((s, i) =>
       <Chip key={i} style={styles.chip}>
         {s}

@@ -30,6 +30,8 @@ export const guessLetter = str => (dispatch, getState) => {
       dispatch(updateCorrect(getState().animals.all[0]));
     }
   } else {
+    dispatch({ type: GUESS_LETTER, curry: add(str), });
+
     dispatch(decrementRem());
   }
 };

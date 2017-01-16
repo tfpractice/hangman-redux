@@ -9,9 +9,8 @@ const resetForm = formID => (action, dispatch) => dispatch(reset(formID));
 
 const BaseGuess = ({ handleSubmit, dispatch, onSubmit, }, context) => (
   <form onSubmit={handleSubmit} >
-    <Field name="guess" component={TextField} hintText="Guess"
+    <Field name="guess" component="input" type="text"
       onKeyPress={({ key, }) => onSubmit(key)}/>
-    <FlatButton primary label="Submit" type="submit" />
   </form>
   );
 
@@ -19,14 +18,9 @@ const ReduxGuess = reduxForm()(BaseGuess);
 
 const GuessForm = ({ guessLetter, guessForm, formID, dispatch, }) => (
     <div className="row">
-      <p>Guess</p>
-      <TextField id="charGuess" hintText="guess characters"
-        onKeyPress={({ key, }) => guessLetter(key)}
-        onChange={(e, val, ...args) => {
-          (reset('charGuess'));
-        }} />
       <ReduxGuess
-        form={formID} onSubmit={guessLetter} onSubmitSuccess={resetForm(formID)}
+        form={'guessChar'} onSubmit={guessLetter}
+        onSubmitSuccess={resetForm('guessChar')}
       />
     </div>
   );
