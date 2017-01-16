@@ -1,14 +1,15 @@
 import React from 'react';
 import { connect, } from 'react-redux';
+import { ANIMAP, } from '../utils';
 
-//
-// const mapStateToProps = ({ word, animals, }, { chr, }) =>
-// ({ isGuessed: new Set(guesses).has(chr.toUpperCase()), });
+const mapStateToProps = ({ word, animals: { correct, all, }, }) =>
+({ word, correct, all, });
 
-const Stats = () => (
+const Stats = ({ word, correct, all, }) => (
 <div>
   <h2>Review</h2>
-  <h1>You will receive a list of animals, are to guess the names of the collective noun for the animal</h1>
+  {correct.map((c, i) => <h1 key={i}>A {ANIMAP.get(c).join(', ')} of {c}</h1>)}
+  {all.map((c, i) => <h1 key={i}>A {ANIMAP.get(c).join(', ')} of {c}</h1>)}
 </div>);
 
-export default Stats;
+export default connect(mapStateToProps)(Stats);

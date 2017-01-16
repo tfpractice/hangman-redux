@@ -3,7 +3,6 @@ import { connect, } from 'react-redux';
 import FlatButton from 'material-ui/FlatButton';
 import Word from './word';
 import Grid from './grid';
-import Paper from 'material-ui/Paper';
 import { animalActs, gifActs, statusActs, wordActs, } from '../actions';
 import { ANIMAP, } from '../utils';
 const mapStateToProps = ({ word, guesses, synonyms, animals: { all, correct, }, remaining, gifs, }) =>

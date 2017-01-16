@@ -14,11 +14,7 @@ import Stats from './stats';
 import { animalActs, gifActs, statusActs, wordActs, } from '../actions';
 import Game from './game';
 
-const mapStateToProps = ({ status, word, guesses, synonyms, animals, remaining, gifs, }) =>
-({
-word, guesses, remaining, gifs, animals, status,
-});
-
+const mapStateToProps = ({ status, }) => ({ status, });
 const NoMatch = ({ location, }) => (
   <div>
     <h2>Whoops</h2>
@@ -28,7 +24,6 @@ const NoMatch = ({ location, }) => (
 
 const Routes = ({ status: { over, }, playGame, }) => (
 <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme, { userAgent: false, })}>
-
   <BrowserRouter>
     <div className="Game">
       <AppBar
@@ -40,19 +35,15 @@ const Routes = ({ status: { over, }, playGame, }) => (
         <Link to="/about"><FlatButton label={'About'} secondary /></Link>
       </AppBar>
       <div className="container">
-
         <Match exactly pattern="/" component={About} />
-        <Match pattern="/play" render={props =>
-          !over ? <Game/> : <Stats/>}/>
+        <Match pattern="/play" render={props => !over ? <Game/> : <Stats/>}/>
         <Match pattern="/about" component={About} />
         <Match pattern="/word" component={Word} />
         <Miss component={NoMatch}/>
       </div>
-
     </div>
   </BrowserRouter>
 </MuiThemeProvider>
-
 );
 
 export default connect(mapStateToProps, statusActs)(Routes);
