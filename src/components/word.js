@@ -2,6 +2,8 @@ import React from 'react';
 import { connect, } from 'react-redux';
 import { Card, CardActions, CardHeader, CardMedia, CardText, CardTitle, }
 from 'material-ui/Card';
+import { List, ListItem, } from 'material-ui/List';
+
 import FlatButton from 'material-ui/FlatButton';
 import Divider from 'material-ui/Divider';
 import Chip from 'material-ui/Chip';
@@ -19,10 +21,11 @@ const styles = {
   },
 };
 
-const mapStateToProps = ({ gifs, guesses, synonyms, word, remaining, animals, }, ) =>
+const mapStateToProps = ({ gifs, guesses, definitions, synonyms, word, remaining, animals, }, ) =>
 ({
  characters: (word.toUpperCase().split('')),
  synonyms,
+ definitions,
  guesses,
  remaining,
  animal: animals.all[0],
@@ -30,7 +33,7 @@ const mapStateToProps = ({ gifs, guesses, synonyms, word, remaining, animals, },
 });
 
 const Word = ({
- guesses, word, characters, synonyms, guessLetter, animal,
+ guesses, word, characters, synonyms, definitions, guessLetter, animal,
 remaining, gifs,
 }) => (
   <Card>
@@ -50,9 +53,13 @@ remaining, gifs,
               {s}
             </Chip>)}
           </div>
+          <List>
+            {definitions.map((d, i) => <ListItem key={i} primaryText={d}/>)}
+          </List>
+
         </CardText>
       </Card>
 
         );
-        
+
 export default connect(mapStateToProps, { ...wordActs, ...guessActs, })(Word);

@@ -8,7 +8,8 @@ import synonyms from './synonyms';
 import gifs from './gifs';
 import reactions from './reactions';
 import animals from './animals';
+import definitions from './definitions';
 
 export default combineReducers({
-animals, word, guesses, remaining, status, gifs, synonyms, forms,
+animals, definitions, word, guesses, remaining, status, gifs, synonyms, forms,
 });
