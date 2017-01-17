@@ -10,7 +10,7 @@ import Chip from 'material-ui/Chip';
 import Form from './form';
 import Letter from './letter';
 import Grid from './grid';
-
+import Info from './info';
 import { guessActs, wordActs, } from '../actions';
 
 const styles = {
@@ -54,12 +54,7 @@ remaining, gifs,
               {s}
             </Chip>)}
           </div>
-          <List>
-            {definitions.map((d, i) => <ListItem key={i} primaryText={d}/>)}
-          </List>
-          <List>
-            {examples.map((d, i) => <ListItem key={i} primaryText={d}/>)}
-          </List>
+          <Info examples={examples} definitions={definitions}/>
 
         </CardText>
       </Card>

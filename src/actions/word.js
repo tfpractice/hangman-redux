@@ -29,7 +29,10 @@ const hasDefs = r => r.definition;
 const tapDef = ({ definition = '', }) => definition;
 const hasExps = r => r.examples;
 const tapExp = ({ examples = '', }) => examples;
-const replace = regex => str => str.replace(new RegExp(regex), ' ____ ');
+const replace = regex => (str) => {
+  console.log('regex', regex, new RegExp(regex));
+  return str.replace(new RegExp(regex), '  ____  ');
+};
 
 export const getWord = wrd => dispatch =>
   axios.get(`${WORDS_API_URL}/${wrd}`, { headers, })
@@ -38,9 +41,8 @@ export const getWord = wrd => dispatch =>
       const defs = results.map(tapDef);
       const exs = results.map(tapExp)
       .reduce(flatten, [])
-      .map(replace(`${word}`));
+      .map(replace(`${word}.\\\w+`));
 
-      console.log('results', results, exs);
       dispatch(resetWord(word));
       dispatch(updateDefinitions(defs));
       dispatch(updateSynonyms(syns));
