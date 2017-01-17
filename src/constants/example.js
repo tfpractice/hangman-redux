@@ -1,0 +1,3 @@
+export const UPDATE_EXAMPLES = 'UPDATE_EXAMPLES';
+
+export const EXAMPLES_ACTIONS = new Set([ UPDATE_EXAMPLES, ]);

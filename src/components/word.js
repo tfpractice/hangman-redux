@@ -21,10 +21,11 @@ const styles = {
   },
 };
 
-const mapStateToProps = ({ gifs, guesses, definitions, synonyms, word, remaining, animals, }, ) =>
+const mapStateToProps = ({ gifs, examples, guesses, definitions, synonyms, word, remaining, animals, }, ) =>
 ({
  characters: (word.toUpperCase().split('')),
  synonyms,
+ examples,
  definitions,
  guesses,
  remaining,
@@ -33,7 +34,7 @@ const mapStateToProps = ({ gifs, guesses, definitions, synonyms, word, remaining
 });
 
 const Word = ({
- guesses, word, characters, synonyms, definitions, guessLetter, animal,
+ guesses, word, characters, examples, synonyms, definitions, guessLetter, animal,
 remaining, gifs,
 }) => (
   <Card>
@@ -55,6 +56,9 @@ remaining, gifs,
           </div>
           <List>
             {definitions.map((d, i) => <ListItem key={i} primaryText={d}/>)}
+          </List>
+          <List>
+            {examples.map((d, i) => <ListItem key={i} primaryText={d}/>)}
           </List>
 
         </CardText>

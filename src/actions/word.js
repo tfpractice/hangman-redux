@@ -6,6 +6,7 @@ import { HEADERS as headers, } from '../utils';
 import { GUESS_WORD, RESET_WORD, WORD_ACTIONS, } from '../constants';
 import { updateSynonyms, } from './synonyms';
 import { updateDefinitions, } from './definitions';
+import { updateExamples, } from './example';
 import { resetGuesses, } from './guesses';
 import { resetRem, } from './remaining';
 import { getGifs, } from './gifs';
@@ -26,18 +27,26 @@ const hasSynonyms = r => r.synonyms;
 const tapSyn = ({ synonyms = [], }) => synonyms;
 const hasDefs = r => r.definition;
 const tapDef = ({ definition = '', }) => definition;
+const hasExps = r => r.examples;
+const tapExp = ({ examples = '', }) => examples;
+const replace = regex => str => str.replace(new RegExp(regex), ' ____ ');
 
 export const getWord = wrd => dispatch =>
   axios.get(`${WORDS_API_URL}/${wrd}`, { headers, })
     .then(({ data: { word, results, }, }) => {
       const syns = results.map(tapSyn).reduce(flatten, []);
       const defs = results.map(tapDef);
+      const exs = results.map(tapExp)
+      .reduce(flatten, [])
+      .map(replace(`${word}`));
 
-      console.log('results', results);
+      console.log('results', results, exs);
       dispatch(resetWord(word));
       dispatch(updateDefinitions(defs));
       dispatch(updateSynonyms(syns));
       dispatch(getGifs(wrd));
+      dispatch(updateExamples(exs));
+
       return word;
     })
     .catch(console.error);

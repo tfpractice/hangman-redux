@@ -6,6 +6,8 @@ import * as definActs from './definitions';
 import * as gifActs from './gifs';
 import * as statusActs from './status';
 import * as reactionActs from './reactions';
+import * as exampleActs from './example';
 import * as animalActs from './animal';
-export { guessActs, remainingActs, wordActs, statusActs,
+
+export { guessActs, exampleActs, remainingActs, wordActs, statusActs,
   gifActs, animalActs, synonymActs, definActs, };
